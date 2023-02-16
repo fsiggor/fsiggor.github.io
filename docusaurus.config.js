@@ -70,15 +70,15 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
+          {to: '/blog', label: 'Posts', position: 'left'},
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Guias',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/fsiggor',
             label: 'GitHub',
             position: 'right',
           },
