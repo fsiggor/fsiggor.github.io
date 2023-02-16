@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[862],{7349:e=>{e.exports=JSON.parse('{"title":"Mobile","slug":"/category/mobile","permalink":"/docs/category/mobile","navigation":{"previous":{"title":"Frontend Intro","permalink":"/docs/frontend/intro"},"next":{"title":"Mobile Intro","permalink":"/docs/mobile/intro"}}}')}}]);
