@@ -20,14 +20,28 @@ const sidebars = {
   /*
   tutorialSidebar: [
     'intro',
-    'hello',
     {
       type: 'category',
-      label: 'Tutorial',
-      items: ['tutorial-basics/create-a-document'],
+      label: 'Backend',
+      items: ['backend/intro'],
+    },
+    {
+      type: 'category',
+      label: 'DevOps',
+      items: ['devops/intro'],
+    },
+    {
+      type: 'category',
+      label: 'Frontend',
+      items: ['frontend/intro'],
+    },
+    {
+      type: 'category',
+      label: 'Mobile',
+      items: ['mobile/intro'],
     },
   ],
-   */
+  */
 };
 
 module.exports = sidebars;
