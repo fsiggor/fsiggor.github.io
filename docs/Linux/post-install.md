@@ -45,7 +45,8 @@
 - Install docker-compose `yay -S docker-compose`
 
 11. **asdf**
-- Install 
+- Install `yay -S asdf-vm`
+- Enable `echo ". /opt/asdf-vm/asdf.sh" >> ~/.zshrc` and reload
 - Add golang
 - Add nodejs
 - Add awscli
