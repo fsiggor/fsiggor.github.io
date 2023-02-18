@@ -7,6 +7,9 @@
 2. **yay**
 - Install `sudo pacman -S yay`
 
+3. **preload**
+- Install `yay -S preload`
+
 3. **Bitwarden**
 - Install `yay -S bitwarden` 
 
