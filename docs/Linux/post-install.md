@@ -8,12 +8,19 @@
 - Install `yay -S bitwarden` 
 4. **NordVPN**
 - Install `yay -S nordvpn-bin`
+- Enable `systemctl enable nordvpn`
+- Start `systemctl start nordvpn`
 - Add user `sudo usermod -aG nordvpn $USER`
 - Reboot `reboot`
 - Authenticate `nordvpn login`
 - Connect to VPN `nordvpn connect`
-5. **Disable IPV6**
-6. **Install Browsers**
+- Set Autoconnect `nordvpn set autoconnect on`
+- Disable IPV6
+5. **btrfs Timeshift**
+- Install `yay -S timeshift`
+6. **SSH and GnuPG**
+- Install openSSH `yay -S openssh`
+- Install GnuPG `yay -S gnupg`
+- Import or create keys
+7 **Browser**
 - Firefox `yay -S firefox`
-- Tor `yay -S tor`
-
