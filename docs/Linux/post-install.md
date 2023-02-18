@@ -2,7 +2,7 @@
 
 1. **Update system**
 - `sudo pacman -Syyuu`
-- `sudo pacman base-devel`
+- `sudo pacman -S base-devel`
 
 2. **yay**
 - Install `sudo pacman -S yay`
@@ -46,11 +46,16 @@
 
 11. **asdf**
 - Install 
+- Add golang
+- Add nodejs
+- Add awscli
+- Add gcloud
 
 12. **Git**
-- Install 
+- Install `yay -S git`
 
 13. **ZSH**
+- Install `yay -S zsh`
 
 14. **Twingate**
 
@@ -59,5 +64,3 @@
 
 16. **BISQ**
 - Install `yay -S bisq-bin`
-
-17. 
