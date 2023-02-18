@@ -41,16 +41,28 @@
 10. **Docker and docker-compose**
 - Install docker `yay -S docker`
 - Add user `sudo usermod -aG docker $USER`
-- Reboot ``reboot`
+- Reboot `reboot`
 - Install docker-compose `yay -S docker-compose`
 
 11. **asdf**
 - Install `yay -S asdf-vm`
 - Enable `echo ". /opt/asdf-vm/asdf.sh" >> ~/.zshrc` and reload
-- Add golang
-- Add nodejs
-- Add awscli
-- Add gcloud
+
+- Add golang `asdf plugin-add golang https://github.com/kennyp/asdf-golang.git`
+- Install golang `asdf install golang latest`
+- Set golang `asdf global golang latest`
+
+- Add nodejs `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`
+- Install nodejs `asdf install nodejs lts`
+- Set nodejs `asdf global nodejs lts`
+
+- Add awscli `asdf plugin add awscli`
+- Install awscli `asdf install awscli latest`
+- Set awscli `asdf global awscli latest`
+
+- Add gcloud `asdf plugin add gcloud`
+- Install gcloud `asdf install gcloud latest`
+- Set gcloud `asdf global gcloud latest`
 
 12. **Git**
 - Install `yay -S git`
