@@ -36,3 +36,7 @@
 
 9. **Tmux**
 - Install `yay -S tmux`
+
+10. **Docker and docker-compose**
+- Install docker `yay -S docker`
+- 
