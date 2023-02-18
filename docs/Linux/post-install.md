@@ -2,10 +2,13 @@
 
 1. **Update system**
 - `sudo pacman -Syyuu`
+
 2. **yay**
 - Install `sudo pacman -S yay`
+
 3. **Bitwarden**
 - Install `yay -S bitwarden` 
+
 4. **NordVPN**
 - Install `yay -S nordvpn-bin`
 - Enable `systemctl enable nordvpn`
@@ -16,11 +19,20 @@
 - Connect to VPN `nordvpn connect`
 - Set Autoconnect `nordvpn set autoconnect on`
 - Disable IPV6
+
 5. **btrfs Timeshift**
 - Install `yay -S timeshift`
+
 6. **SSH and GnuPG**
 - Install openSSH `yay -S openssh`
 - Install GnuPG `yay -S gnupg`
 - Import or create keys
+
 7. **Browser**
 - Firefox `yay -S firefox`
+
+8. **Neovim**
+- Install `yay -S neovim`
+
+9. **Tmux**
+- Install `yay -S tmux`
