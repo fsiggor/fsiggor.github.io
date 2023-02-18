@@ -22,5 +22,5 @@
 - Install openSSH `yay -S openssh`
 - Install GnuPG `yay -S gnupg`
 - Import or create keys
-7 **Browser**
+7. **Browser**
 - Firefox `yay -S firefox`
