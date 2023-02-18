@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[197],{9559:e=>{e.exports=JSON.parse('{"title":"Backend","slug":"/category/backend","permalink":"/docs/category/backend","navigation":{"previous":{"title":"Manjaro Post-Install","permalink":"/docs/Linux/post-install"},"next":{"title":"Backend Intro","permalink":"/docs/backend/intro"}}}')}}]);
