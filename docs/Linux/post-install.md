@@ -48,11 +48,11 @@
 - Install `yay -S asdf-vm`
 - Enable `echo ". /opt/asdf-vm/asdf.sh" >> ~/.zshrc` and reload
 
-- Add golang `asdf plugin-add golang https://github.com/kennyp/asdf-golang.git`
+- Add golang `asdf plugin add golang`
 - Install golang `asdf install golang latest`
 - Set golang `asdf global golang latest`
 
-- Add nodejs `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`
+- Add nodejs `asdf plugin add nodejs`
 - Install nodejs `asdf install nodejs lts`
 - Set nodejs `asdf global nodejs lts`
 
