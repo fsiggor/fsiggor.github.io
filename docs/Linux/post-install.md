@@ -2,6 +2,7 @@
 
 1. **Update system**
 - `sudo pacman -Syyuu`
+- `sudo pacman base-devel`
 
 2. **yay**
 - Install `sudo pacman -S yay`
@@ -39,4 +40,24 @@
 
 10. **Docker and docker-compose**
 - Install docker `yay -S docker`
-- 
+- Add user `sudo usermod -aG docker $USER`
+- Reboot ``reboot`
+- Install docker-compose `yay -S docker-compose`
+
+11. **asdf**
+- Install 
+
+12. **Git**
+- Install 
+
+13. **ZSH**
+
+14. **Twingate**
+
+15. **Sparrow Wallet**
+- Install `yay -S sparrow-wallet`
+
+16. **BISQ**
+- Install `yay -S bisq-bin`
+
+17. 
