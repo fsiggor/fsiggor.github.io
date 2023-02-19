@@ -58,6 +58,8 @@
 - Add nodejs `asdf plugin add nodejs`
 - Install nodejs `asdf install nodejs lts`
 - Set nodejs `asdf global nodejs lts`
+- Update npm `npm install -g npm`
+- Update yarn `npm install -g yarn`
 
 - Add awscli `asdf plugin add awscli`
 - Install awscli `asdf install awscli latest`
