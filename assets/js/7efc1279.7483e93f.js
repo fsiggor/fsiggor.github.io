@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[821],{9538:e=>{e.exports=JSON.parse('{"title":"DevOps","slug":"/category/devops","permalink":"/docs/category/devops","navigation":{"previous":{"title":"Backend Intro","permalink":"/docs/backend/intro"},"next":{"title":"DevOps Intro","permalink":"/docs/devops/intro"}}}')}}]);

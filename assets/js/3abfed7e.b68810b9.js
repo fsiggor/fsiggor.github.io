@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[197],{9559:e=>{e.exports=JSON.parse('{"title":"Backend","slug":"/category/backend","permalink":"/docs/category/backend","navigation":{"previous":{"title":"Windows Setup","permalink":"/docs/Windows/setup"},"next":{"title":"Backend Intro","permalink":"/docs/backend/intro"}}}')}}]);
