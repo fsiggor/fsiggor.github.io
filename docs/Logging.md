@@ -1,6 +1,6 @@
 # Logging Best Practices
 
-### Logging level
+### Level
 
 There are typically 5 main log levels:
 
