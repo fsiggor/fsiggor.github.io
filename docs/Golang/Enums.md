@@ -1,3 +1,4 @@
+# Go Enums
 
 ### Normal Enum:
 

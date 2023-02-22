@@ -105,3 +105,5 @@ Reflection is a powerful feature in Go that can be used for various purposes, su
 - **Implementing dependency injection:** Reflection can be used to implement dependency injection frameworks, by using the `ValueOf` and `Set` methods of the reflect package to set the fields of structs at runtime.
 
 And much more, reflection is used in many packages to create useful utilities.
+
+Reference: https://levelup.gitconnected.com/reflection-in-go-everything-you-need-to-know-to-use-it-effectively-52c78da1f4ff
