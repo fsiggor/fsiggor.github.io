@@ -44,13 +44,7 @@ const config = {
           editUrl:
             'https://github.com/fsiggor/fsiggor.github.io/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/fsiggor/fsiggor.github.io/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -70,7 +64,6 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {to: '/blog', label: 'Posts', position: 'left'},
           {
             type: 'doc',
             docId: 'intro',

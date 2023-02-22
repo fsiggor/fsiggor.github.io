@@ -1,4 +1,4 @@
-# Windows Setup
+# Windows Post-Install
 
 1. Debloat Windows with this [Script](https://github.com/LeDragoX/Win-Debloat-Tools)
 2. Install WSL using the PowerShell: `wsl --install`
