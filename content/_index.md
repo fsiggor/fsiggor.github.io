@@ -3,4 +3,4 @@ title: fsiggor
 toc: false
 ---
 
-Welcome to my site.
+Software engineer. Building things with simplicity and purpose.

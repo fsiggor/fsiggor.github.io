@@ -1,5 +1,6 @@
 ---
-title: About This Project
+title: Building This Site
+date: 2026-03-28
 ---
 
 ## Goals
