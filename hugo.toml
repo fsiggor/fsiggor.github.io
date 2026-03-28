@@ -1,3 +1,7 @@
 baseURL = 'https://fsiggor.github.io/'
 locale = 'en-us'
 title = 'fsiggor'
+
+[module]
+  [[module.imports]]
+    path = "github.com/imfing/hextra"
