@@ -1,0 +1,10 @@
+CLAUDE.md
+
+# OS
+.DS_Store
+
+# Hugo generated
+blog/public/
+blog/resources/
+.hugo_build.lock
+blog/.hugo_build.lock
