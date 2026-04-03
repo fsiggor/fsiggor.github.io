@@ -63,6 +63,7 @@ RETRY_HTTP_CODES = [500, 502, 503, 504, 408, 429]
 
 ITEM_PIPELINES = {
     "src.pipelines.MarkdownPipeline": 300,
+    "src.pipelines.LinkPipeline": 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

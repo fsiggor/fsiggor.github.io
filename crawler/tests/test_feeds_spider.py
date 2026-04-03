@@ -100,7 +100,7 @@ class TestFeedsSpiderInit:
         assert s.max_pages_per_site == 5
 
     def test_default_domain(self, spider):
-        assert spider.domain == "general"
+        assert spider.domain == "inbox"
 
     def test_custom_domain(self):
         with patch("src.spiders.feeds_spider.load_sources", return_value=[]):
@@ -170,7 +170,7 @@ class TestParseFeed:
         meta = {"source_name": "Blog A", "site_url": "https://a.com/"}
         response = fake_text_response("https://a.com/feed.xml", RSS_FEED, meta=meta)
         items = list(spider.parse_feed(response))
-        assert items[0]["domain"] == "general"
+        assert items[0]["domain"] == "inbox"
 
     def test_parses_atom_feed(self, spider):
         meta = {"source_name": "Blog B", "site_url": ""}
@@ -234,7 +234,7 @@ class TestParsePage:
         items = [i for i in spider.parse_page(response) if not isinstance(i, Request)]
         assert len(items) == 1
         assert items[0]["title"] == "Test Page"
-        assert items[0]["domain"] == "general"
+        assert items[0]["domain"] == "inbox"
 
     def test_skips_short_content(self, spider):
         meta = {"site_url": "https://a.com/", "source_name": "A"}
