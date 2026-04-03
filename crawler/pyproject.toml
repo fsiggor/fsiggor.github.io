@@ -5,6 +5,7 @@ description = "Scrapy crawler that saves pages as Hugo-compatible markdown"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "feedparser>=6.0.11",
     "pyyaml>=6.0.3",
     "scrapy>=2.14.2",
 ]
