@@ -1,0 +1,15 @@
+[project]
+name = "crawler"
+version = "0.1.0"
+description = "Scrapy crawler that saves pages as Hugo-compatible markdown"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pyyaml>=6.0.3",
+    "scrapy>=2.14.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
