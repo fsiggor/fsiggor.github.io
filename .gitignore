@@ -8,3 +8,14 @@ blog/public/
 blog/resources/
 .hugo_build.lock
 blog/.hugo_build.lock
+
+# Obsidian
+.obsidian/
+
+# Scraped data output
+data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
