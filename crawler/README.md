@@ -1,6 +1,6 @@
 # Crawler
 
-Scrapy-based crawler that fetches RSS feeds and scrapes sites, saving each page as a Hugo-compatible markdown file in the `data/` directory at the repo root.
+Scrapy-based crawler that fetches RSS feeds and scrapes sites, saving each page as a Hugo-compatible markdown file in the `data/` directory at the repo root. Automatically creates `[[wikilinks]]` between related documents for use in Obsidian.
 
 ## Setup
 
@@ -24,13 +24,16 @@ This reads `sources.json`, fetches every RSS feed, and crawls each site for olde
 ```bash
 # Limit pages crawled per site (default: 20)
 uv run scrapy crawl feeds -a max_pages=5
+
+# Set the output domain/folder
+uv run scrapy crawl feeds -a domain=bitcoin
 ```
 
 ### Crawl a single site
 
 ```bash
-uv run scrapy crawl site -a url=https://example.com/blog -a domain=ENG
-uv run scrapy crawl site -a url=https://example.com -a domain=ENG -a max_pages=10
+uv run scrapy crawl site -a url=https://example.com/blog -a domain=samples
+uv run scrapy crawl site -a url=https://example.com -a domain=samples -a max_pages=10
 ```
 
 | Argument | Required | Default | Description |
@@ -41,14 +44,12 @@ uv run scrapy crawl site -a url=https://example.com -a domain=ENG -a max_pages=1
 
 ## Adding sources
 
-Edit `sources.json`. Each domain key maps to a list of sources:
+Edit `sources.json`. Each entry is an object with:
 
 ```json
-{
-  "bitcoin": [
-    {"name": "Bitcoin Optech", "feed": "https://bitcoinops.org/feed.xml", "site": "https://bitcoinops.org/"}
-  ]
-}
+[
+  {"name": "Bitcoin Optech", "feed": "https://bitcoinops.org/feed.xml", "site": "https://bitcoinops.org/"}
+]
 ```
 
 | Field | Description |
@@ -61,16 +62,14 @@ Edit `sources.json`. Each domain key maps to a list of sources:
 
 ```
 data/
-├── bitcoin/
-│   ├── 2026-01-15-bitcoin-optech-newsletter.md
-│   └── 2026-02-01-taproot-activation.md
-├── privacy/
-└── security/
+└── inbox/
+    ├── 2026-01-15-bitcoin-optech-newsletter.md
+    └── 2026-02-01-taproot-activation.md
 ```
 
-Each file has Hugo-compatible YAML frontmatter:
+Each file has Hugo-compatible YAML frontmatter and Obsidian-compatible wikilinks:
 
-```yaml
+```markdown
 ---
 title: "Bitcoin Optech Newsletter"
 url: https://bitcoinops.org/en/newsletters/2026-01-15/
@@ -81,7 +80,42 @@ description: "Weekly newsletter covering Bitcoin technical developments"
 ---
 
 Page content in markdown...
+
+---
+
+## Related
+
+- [[Bitcoin Taproot Upgrade]]
+- [[Lightning Network Payment Channels]]
 ```
+
+The `## Related` section with `[[wikilinks]]` is generated automatically using TF-IDF cosine similarity. Obsidian's graph view picks these up as connections between notes.
+
+## How it works
+
+### Pipelines
+
+1. **MarkdownPipeline** (priority 300) — writes each item as a `.md` file with YAML frontmatter. Skips duplicates (same date + slug).
+2. **LinkPipeline** (priority 400) — collects all items during the crawl, then on spider close computes TF-IDF similarity and appends `[[wikilinks]]` to each file.
+
+The linking strategy is decoupled via the `Linker` abstraction (Strategy pattern). The default `TfidfLinker` uses cosine similarity with zero external dependencies (stdlib only). New strategies (embeddings, NER, tags) can be swapped in by implementing the `Linker` interface.
+
+### Spiders
+
+- **FeedsSpider** (`feeds`) — reads `sources.json`, fetches RSS/Atom feeds, and crawls sites for older posts. Limits pages per source via `max_pages`.
+- **SiteSpider** (`site`) — crawls a single site from a start URL. Extracts content preferring `<article>` > `<main>` > `<body>`.
+
+### Settings
+
+- `CONCURRENT_REQUESTS = 16` — up to 16 requests in flight across all domains
+- `CONCURRENT_REQUESTS_PER_DOMAIN = 2` — 2 parallel requests per domain
+- `DOWNLOAD_DELAY = 0.5` — base delay between requests (autothrottle adjusts per server)
+- `AUTOTHROTTLE_ENABLED = True` — auto-adjusts delay based on server response times
+- `AUTOTHROTTLE_TARGET_CONCURRENCY = 2.0` — targets 2 concurrent requests per domain
+- `ROBOTSTXT_OBEY = True` — respects robots.txt
+- `RETRY_TIMES = 3` — retries on 500, 502, 503, 504, 408, 429
+- `DOWNLOAD_TIMEOUT = 30` — fails fast on slow/dead sites
+- `DNSCACHE_ENABLED = True` — caches DNS lookups across domains
 
 ## Project structure
 
@@ -93,40 +127,19 @@ crawler/
 │   │   └── site_spider.py    # Single-site spider
 │   ├── config.py             # Loads sources.json
 │   ├── items.py              # PageItem definition
-│   ├── pipelines.py          # MarkdownPipeline (writes .md files)
+│   ├── linker.py             # Linker ABC + TfidfLinker strategy
+│   ├── pipelines.py          # MarkdownPipeline + LinkPipeline
 │   └── settings.py           # Scrapy settings
 ├── tests/
+│   ├── test_config.py        # Config loading tests
 │   ├── test_feeds_spider.py  # Feeds spider tests
-│   ├── test_spider.py        # Site spider tests
-│   ├── test_pipelines.py     # Pipeline and slugify tests
-│   └── test_config.py        # Config loading tests
+│   ├── test_linker.py        # TF-IDF linker tests
+│   ├── test_pipelines.py     # Pipeline, slugify, and wikilink tests
+│   └── test_spider.py        # Site spider tests
 ├── sources.json              # RSS sources configuration
 ├── scrapy.cfg
 └── pyproject.toml
 ```
-
-## How it works
-
-### FeedsSpider (`feeds`)
-
-1. Reads all sources from `sources.json`
-2. For each source: fetches the RSS/Atom feed and extracts items (title, date, content, tags)
-3. For each source with a `site` URL: crawls the site for older posts (up to `max_pages` per site)
-4. **MarkdownPipeline** writes each item as a `.md` file with YAML frontmatter
-5. Duplicate files (same date + slug) are skipped
-
-### SiteSpider (`site`)
-
-1. Crawls from a start URL, following internal links up to `max_pages`
-2. Extracts title, description (meta/og:), date (meta/time tag), and body content
-3. Content extraction prefers `<article>`, falls back to `<main>`, then `<body>`
-4. Pages with less than 100 characters of content are skipped
-
-## Settings
-
-- `ROBOTSTXT_OBEY = True` — respects robots.txt
-- `CONCURRENT_REQUESTS_PER_DOMAIN = 1` — one request at a time per domain
-- `DOWNLOAD_DELAY = 1` — 1 second between requests
 
 ## Tests
 
