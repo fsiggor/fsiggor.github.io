@@ -1,48 +1,65 @@
 # fsiggor.github.io
 
-Blog pessoal e landing page de um engenheiro de software. Construído com Hugo + Hextra, deploy via GitHub Pages.
+Personal blog and landing page of a software engineer. Built with Hugo + Hextra, deployed via GitHub Pages. Includes a Scrapy-based crawler that fetches RSS feeds and scrapes sites, saving content as markdown with Obsidian-compatible `[[wikilinks]]`.
 
-## Estrutura do repositório
+## Repository structure
 
 ```
-├── README.md
-├── AGENTS.md                    # Instruções para agentes de IA
-├── blog/                        # Site Hugo + Hextra
+├── blog/                        # Hugo + Hextra site
 │   ├── hugo.toml
 │   ├── content/
 │   ├── archetypes/
 │   └── static/
-├── docs/                        # Documentação do projeto
+├── crawler/                     # Scrapy RSS crawler
+│   ├── src/                     # Spiders, pipelines, linker
+│   ├── tests/
+│   ├── sources.json             # RSS sources configuration
+│   └── pyproject.toml
+├── data/                        # Crawled markdown files (gitignored)
+├── docs/                        # Project documentation
 │   ├── ARCHITECTURE.md
 │   ├── GUIDELINES.md
 │   ├── CONTRIBUTING.md
 │   ├── SECURITY.md
 │   ├── SOURCES.md
 │   └── PUBLISHING.md
+├── AGENTS.md                    # Instructions for AI agents
 └── .github/workflows/           # CI/CD
 ```
 
 ## Quick start
+
+### Blog
 
 ```bash
 cd blog
 hugo server -D
 ```
 
-O site estará disponível em http://localhost:1313/.
+Site available at http://localhost:1313/.
 
-## Documentação
+### Crawler
 
-| Documento | Conteúdo |
-|-----------|----------|
-| [AGENTS.md](AGENTS.md) | Instruções para agentes de IA |
-| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Arquitetura e pipeline |
-| [GUIDELINES.md](docs/GUIDELINES.md) | Convenções de conteúdo e frontmatter |
-| [CONTRIBUTING.md](docs/CONTRIBUTING.md) | Como contribuir |
-| [SECURITY.md](docs/SECURITY.md) | Segurança e dados sensíveis |
-| [SOURCES.md](docs/SOURCES.md) | Catálogo de fontes por domínio |
-| [PUBLISHING.md](docs/PUBLISHING.md) | Pipeline de publicação |
+```bash
+cd crawler
+uv sync
+uv run scrapy crawl feeds
+```
 
-## Licença
+Fetches all RSS sources, crawls sites for older posts, saves `.md` files to `data/`, and creates `[[wikilinks]]` between related documents. See [crawler/README.md](crawler/README.md) for details.
 
-Projeto pessoal — uso privado.
+## Documentation
+
+| Document | Content |
+|----------|---------|
+| [AGENTS.md](AGENTS.md) | Instructions for AI agents |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Architecture and pipeline |
+| [GUIDELINES.md](docs/GUIDELINES.md) | Content conventions and frontmatter |
+| [CONTRIBUTING.md](docs/CONTRIBUTING.md) | How to contribute |
+| [SECURITY.md](docs/SECURITY.md) | Security and sensitive data |
+| [SOURCES.md](docs/SOURCES.md) | Source catalog by domain |
+| [PUBLISHING.md](docs/PUBLISHING.md) | Publishing pipeline |
+
+## License
+
+Personal project — private use.
