@@ -1,0 +1,32 @@
+name: CodeQL
+
+on:
+  push:
+    branches: ["main"]
+    paths: ["crawler/**"]
+  pull_request:
+    branches: ["main"]
+    paths: ["crawler/**"]
+  schedule:
+    - cron: "0 6 * * 1" # Weekly on Monday at 6 AM
+
+permissions:
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@3b1a19a80ab047f35cbb237b5bd9bdc1e14f166c # v3
+        with:
+          languages: python
+          source-root: crawler
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@3b1a19a80ab047f35cbb237b5bd9bdc1e14f166c # v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@3b1a19a80ab047f35cbb237b5bd9bdc1e14f166c # v3
