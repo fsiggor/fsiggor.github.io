@@ -19,3 +19,9 @@ data/
 __pycache__/
 *.pyc
 .venv/
+
+# ChromaDB
+chroma_db/
+
+# Environment
+.env
