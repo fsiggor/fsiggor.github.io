@@ -29,22 +29,38 @@ Personal blog and landing page of a software engineer. Built with Hugo + Hextra,
 
 ## Quick start
 
-### Blog
+### Docker (recommended)
+
+```bash
+# Start blog dev server (hot reload at http://localhost:1313)
+docker compose up blog
+
+# Run crawler (on demand)
+docker compose run crawler
+```
+
+The crawler writes markdown files to `data/`, which is shared with the blog container via a mounted volume.
+
+### Without Docker
+
+#### Blog
 
 ```bash
 cd blog
 hugo server -D
 ```
 
-Site available at http://localhost:1313/.
+Site available at http://localhost:1313/. Requires [Hugo](https://gohugo.io/) 0.159.1+.
 
-### Crawler
+#### Crawler
 
 ```bash
 cd crawler
 uv sync
 uv run scrapy crawl feeds
 ```
+
+Requires Python 3.14+ and [uv](https://docs.astral.sh/uv/).
 
 Fetches all RSS sources, crawls sites for older posts, saves `.md` files to `data/`, and creates `[[wikilinks]]` between related documents. See [crawler/README.md](crawler/README.md) for details.
 
