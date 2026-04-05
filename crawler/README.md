@@ -4,6 +4,18 @@ Scrapy-based crawler that fetches RSS feeds and scrapes sites, saving each page 
 
 ## Setup
 
+### Docker (recommended)
+
+From the repo root:
+
+```bash
+docker compose run crawler
+```
+
+No local Python or uv installation needed.
+
+### Without Docker
+
 ```bash
 cd crawler
 uv sync
@@ -16,6 +28,10 @@ Requires Python 3.14+ and [uv](https://docs.astral.sh/uv/).
 ### Fetch all sources (RSS + site crawl)
 
 ```bash
+# Docker
+docker compose run crawler
+
+# Without Docker
 uv run scrapy crawl feeds
 ```
 
@@ -144,6 +160,10 @@ crawler/
 ## Tests
 
 ```bash
+# Docker
+docker compose run crawler uv run pytest tests/ -v
+
+# Without Docker
 uv run pytest tests/ -v
 ```
 
