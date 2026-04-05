@@ -18,13 +18,13 @@ Edit `.env` with your API key. The scripts load it automatically via `python-dot
 **OpenAI (direct):**
 ```
 OPENAI_API_KEY=sk-...
-OPENAI_API_BASE=
+OPENAI_BASE_URL=
 ```
 
 **OpenRouter (alternative):**
 ```
 OPENAI_API_KEY=sk-or-...
-OPENAI_API_BASE=https://openrouter.ai/api/v1
+OPENAI_BASE_URL=https://openrouter.ai/api/v1
 ```
 
 ## Usage
@@ -58,6 +58,12 @@ uv run python src/query.py "flag theory offshore banking"
 | `--chroma-dir` | `./chroma_db` | Path to ChromaDB storage |
 | `--model` | `text-embedding-3-small` | OpenAI embedding model |
 
+## Tests
+
+```bash
+uv run pytest tests/ -v
+```
+
 ## Project structure
 
 ```
@@ -66,8 +72,11 @@ embeddings/
 │   ├── __init__.py
 │   ├── ingest.py     # Load docs, chunk, embed, store in ChromaDB
 │   └── query.py      # Semantic search over stored embeddings
+├── tests/
+│   ├── test_ingest.py  # Ingest pipeline tests
+│   └── test_query.py   # Query/search tests
 ├── chroma_db/        # ChromaDB storage (gitignored)
-├── .env              # API keys template (gitignored)
+├── .env              # API keys (gitignored)
 ├── pyproject.toml
 └── README.md
 ```
