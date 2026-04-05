@@ -1,0 +1,9 @@
+.git
+.github
+.claude
+data
+blog/public
+crawler/.venv
+crawler/.pytest_cache
+__pycache__
+*.pyc
